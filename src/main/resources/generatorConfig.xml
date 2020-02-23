@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!-- 
+  		targetRuntime="MyBatis3"	豪华版
+  				CRUD+很多种复杂查询
+  		targetRuntime="MyBatis3Simple" 标准版
+  				CRUD
+  		
+   -->
+
+
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+   <!--配置生成的model里面有toString方法  -->
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+  <!-- 去掉全部的注释 -->
+	<commentGenerator>
+        <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+  	<!-- 
+		先修改数据库的四个连接属性
+	 -->
+  
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://192.168.137.132:3306/crowdfunding?useSSL=false"
+        userId="root"
+        password="123456">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	<!-- 配置生成的JavaBean的内容
+		targetPackage="com.atguigu.pojo" 	生成的JavaBean所属的包名
+		targetProject=".\src"				生成输出在哪个工程下
+	 -->
+
+    <javaModelGenerator targetPackage="com.zz.scw.order.bean" targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+      <property name="constructorBased" value="true" />
+    </javaModelGenerator>
+   
+	<!-- 配置生成的Mapper.xml配置文件在哪里 -->
+    <sqlMapGenerator targetPackage="mybatis.mapper"  targetProject=".\src\main\resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+	<!-- 修改生成的Mapper接口 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.zz.scw.order.mapper"  targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+	<!-- %通配所有表，类名根据表名自动生成了。 -->
+	<table tableName="t_order"></table>
+	
+
+
+  </context>
+</generatorConfiguration>

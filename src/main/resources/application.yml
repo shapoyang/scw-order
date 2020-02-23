@@ -1,0 +1,38 @@
+#数据库连接参数
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.137.132:3306/crowdfunding
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+#应用名称
+  application:
+    name: scw-order
+#配置redis的连接地址+端口号+密码
+  redis:
+    host: 192.168.137.132
+    port: 6379  #默认6379
+#    filters: stat
+
+#mybatis配置
+mybatis:
+  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+
+#注册到注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 192.168.137.1  #知道当前应用程序的ip地址
+
+#端口号
+server:
+  port: 9000
+  
+
+
